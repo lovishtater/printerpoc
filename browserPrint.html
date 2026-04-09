@@ -44,6 +44,18 @@
       }
 
       @media print {
+        body > *:not(#preview) {
+          display: none !important;
+        }
+
+        #preview {
+          display: block !important;
+        }
+
+        #preview svg {
+          display: block !important;
+        }
+
         body {
           margin: 0;
         }
@@ -51,7 +63,7 @@
     </style>
   </head>
   <body>
-    <h2>Print Preview Version 9</h2>
+    <h2>Print Preview Version 10</h2>
     <div id="preview"></div>
     <button onclick="printSVG()">🖨 Print</button>
 
