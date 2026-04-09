@@ -5,7 +5,7 @@
     <title>Print Job</title>
     <style>
       .container {
-        max-width: 300px;
+        max-width: 400px;
         margin: auto;
         text-align: center;
       }
@@ -51,7 +51,7 @@
     </style>
   </head>
   <body>
-    <h2>Print Preview Version 8</h2>
+    <h2>Print Preview Version 9</h2>
     <div id="preview"></div>
     <button onclick="printSVG()">🖨 Print</button>
 
@@ -289,59 +289,9 @@
       // =======================
       document.getElementById("preview").innerHTML = generateSVG(data);
 
+
       function printSVG() {
-        const svgMarkup = generateSVG(data);
-        const printWindow = window.open("", "_blank", "noopener,noreferrer");
-
-        if (!printWindow) {
-          alert("Unable to open print window. Please allow pop-ups and try again.");
-          return;
-        }
-
-        printWindow.document.open();
-        printWindow.document.write(`
-          <!doctype html>
-          <html>
-            <head>
-              <meta charset="UTF-8" />
-              <title>Print Label</title>
-              <style>
-                @page {
-                  size: 29mm auto;
-                  margin: 0;
-                }
-
-                html, body {
-                  margin: 0;
-                  padding: 0;
-                  width: 29mm;
-                }
-
-                svg {
-                  width: 29mm !important;
-                  height: auto !important;
-                  display: block;
-                }
-              </style>
-            </head>
-            <body>
-              ${svgMarkup}
-            </body>
-          </html>
-        `);
-        printWindow.document.close();
-        printWindow.focus();
-
-        const onPrinted = () => {
-          printWindow.removeEventListener("afterprint", onPrinted);
-          printWindow.close();
-        };
-
-        printWindow.addEventListener("afterprint", onPrinted);
-
-        setTimeout(() => {
-          printWindow.print();
-        }, 100);
+        window.print();
       }
 
     </script>
